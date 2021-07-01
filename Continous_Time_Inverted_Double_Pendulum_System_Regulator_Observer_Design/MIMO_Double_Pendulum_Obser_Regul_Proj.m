@@ -1,0 +1,11 @@
+function DXh=MIMO_Double_Pendulum_Obser_Regul_Proj(t,Xh,u,y)
+global C Ko
+
+DXh1 = Xh(2);
+DXh2 = (140*(cos(Xh(5)) - cos(Xh(3))*cos(Xh(3) - Xh(5)))*((sin(Xh(3) - Xh(5))*Xh(4)^2)/20 + sin(Xh(5))))/(49*cos(Xh(3))^2 + 14*cos(Xh(5))^2 + 34*cos(Xh(3) - Xh(5))^2 - 28*cos(Xh(3))*cos(Xh(5))*cos(Xh(3) - Xh(5)) - 119) + (20*(7*cos(Xh(3)) - 2*cos(Xh(5))*cos(Xh(3) - Xh(5)))*(u(2) + (7*sin(Xh(3)))/2 - (Xh(6)^2*sin(Xh(3) - Xh(5)))/20))/(49*cos(Xh(3))^2 + 14*cos(Xh(5))^2 + 34*cos(Xh(3) - Xh(5))^2 - 28*cos(Xh(3))*cos(Xh(5))*cos(Xh(3) - Xh(5)) - 119) + (10*(2*cos(Xh(3) - Xh(5))^2 - 7)*((7*sin(Xh(3))*Xh(4)^2)/20 + (sin(Xh(5))*Xh(6)^2)/10 + u(1)))/(49*cos(Xh(3))^2 + 14*cos(Xh(5))^2 + 34*cos(Xh(3) - Xh(5))^2 - 28*cos(Xh(3))*cos(Xh(5))*cos(Xh(3) - Xh(5)) - 119);
+DXh3 = Xh(4);
+DXh4 = (40*((sin(Xh(3) - Xh(5))*Xh(4)^2)/20 + sin(Xh(5)))*(17*cos(Xh(3) - Xh(5)) - 7*cos(Xh(3))*cos(Xh(5))))/(49*cos(Xh(3))^2 + 14*cos(Xh(5))^2 + 34*cos(Xh(3) - Xh(5))^2 - 28*cos(Xh(3))*cos(Xh(5))*cos(Xh(3) - Xh(5)) - 119) + (40*(2*cos(Xh(5))^2 - 17)*(u(2) + (7*sin(Xh(3)))/2 - (Xh(6)^2*sin(Xh(3) - Xh(5)))/20))/(49*cos(Xh(3))^2 + 14*cos(Xh(5))^2 + 34*cos(Xh(3) - Xh(5))^2 - 28*cos(Xh(3))*cos(Xh(5))*cos(Xh(3) - Xh(5)) - 119) + (20*(7*cos(Xh(3)) - 2*cos(Xh(5))*cos(Xh(3) - Xh(5)))*((7*sin(Xh(3))*Xh(4)^2)/20 + (sin(Xh(5))*Xh(6)^2)/10 + u(1)))/(49*cos(Xh(3))^2 + 14*cos(Xh(5))^2 + 34*cos(Xh(3) - Xh(5))^2 - 28*cos(Xh(3))*cos(Xh(5))*cos(Xh(3) - Xh(5)) - 119);
+DXh5 = Xh(6);
+DXh6 = (40*(17*cos(Xh(3) - Xh(5)) - 7*cos(Xh(3))*cos(Xh(5)))*(u(2) + (7*sin(Xh(3)))/2 - (Xh(6)^2*sin(Xh(3) - Xh(5)))/20))/(49*cos(Xh(3))^2 + 14*cos(Xh(5))^2 + 34*cos(Xh(3) - Xh(5))^2 - 28*cos(Xh(3))*cos(Xh(5))*cos(Xh(3) - Xh(5)) - 119) + (140*(cos(Xh(5)) - cos(Xh(3))*cos(Xh(3) - Xh(5)))*((7*sin(Xh(3))*Xh(4)^2)/20 + (sin(Xh(5))*Xh(6)^2)/10 + u(1)))/(49*cos(Xh(3))^2 + 14*cos(Xh(5))^2 + 34*cos(Xh(3) - Xh(5))^2 - 28*cos(Xh(3))*cos(Xh(5))*cos(Xh(3) - Xh(5)) - 119) + (140*((sin(Xh(3) - Xh(5))*Xh(4)^2)/20 + sin(Xh(5)))*(7*cos(Xh(3))^2 - 17))/(49*cos(Xh(3))^2 + 14*cos(Xh(5))^2 + 34*cos(Xh(3) - Xh(5))^2 - 28*cos(Xh(3))*cos(Xh(5))*cos(Xh(3) - Xh(5)) - 119);
+yh = C*Xh;
+DXh = [DXh1;DXh2;DXh3;DXh4;DXh5;DXh6] + Ko*(y-yh);
